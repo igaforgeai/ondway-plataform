@@ -1,0 +1,383 @@
+
+💻 Código Unificado Sem Lacunas: page.tsx
+
+tsx
+'use client';
+
+import React, { useState } from 'react';
+
+// Interfaces estruturadas para tipagem robusta na Vercel
+interface NichoConfig {
+  id: string;
+  nome: string;
+  slogan: string;
+  dialetoExemplo: string;
+  geopoliticaContexto: string;
+  leadsDisponiveis: number;
+}
+
+interface ChatMessage {
+  sender: 'client' | 'agent';
+  text: string;
+}
+
+export default function OndwayBigPlayerPlatform() {
+  // 1. Estado dos Nichos Originais
+  const nichosDisponiveis: NichoConfig[] = [
+    { 
+      id: 'saude', 
+      nome: 'Saúde & Clínicas', 
+      slogan: 'Sorriso novo em três consultas. Implantes, clareamento e aparelho online.', 
+      dialetoExemplo: 'pt-BR (Português Brasil) / Algoritmo regional ativo', 
+      geopoliticaContexto: 'Regulamentações locais de saúde e conformidade de dados via IP', 
+      leadsDisponiveis: 1420 
+    },
+    { 
+      id: 'restauracao', 
+      nome: 'Restauração & Delivery', 
+      slogan: 'O seu prato favorito direto no celular. O pedido chega organizado na cozinha.', 
+      dialetoExemplo: 'pt-PT (Português Portugal) / Adaptação automática de vocabulário local', 
+      geopoliticaContexto: 'Ajuste de taxas de entrega dinâmicas por geolocalização', 
+      leadsDisponiveis: 2840 
+    },
+    { 
+      id: 'educacao', 
+      nome: 'Educação & Cursos', 
+      slogan: 'Plataforma de cursos própria com login, módulos e pagamento integrado.', 
+      dialetoExemplo: 'en-US / Localização cultural para mercados de alta conversão', 
+      geopoliticaContexto: 'Moeda e checkout adaptados para o país de acesso do visitante', 
+      leadsDisponiveis: 4150 
+    }
+  ];
+
+  const [nichoAtivo, setNichoAtivo] = useState<NichoConfig>(nichosDisponiveis[0]);
+
+  // 2. Estados do Componente de Atendimento (Chat Interativo Corrigido)
+  const [demoChatInput, setDemoChatInput] = useState('');
+  const [demoChatResponses, setDemoChatResponses] = useState<ChatMessage[]>([
+    { sender: 'agent', text: 'Olá! Sou o agente inteligente da ONDWAY. Como posso te ajudar hoje?' },
+    { sender: 'client', text: 'Quanto custa o serviço?' },
+    { sender: 'agent', text: 'A avaliação inicial é grátis e o plano básico custa R$ 350. Quer agendar?' }
+  ]);
+
+  // 3. Calculadora de ROI de Múltiplos Cenários
+  const [projetoSelecionado, setProjetoSelecionado] = useState('landing');
+  const [clientesPorMes, setClientesPorMes] = useState(2);
+
+  const getValorProjeto = () => {
+    if (projetoSelecionado === 'landing') return { min: 800, max: 2000, nome: 'Landing Page' };
+    if (projetoSelecionado === 'agente') return { min: 1500, max: 4000, nome: 'Agente WhatsApp' };
+    return { min: 3000, max: 8000, nome: 'Sistema + Painel' };
+  };
+
+  // 4. Estado de Sanfona Interativa (FAQ)
+  const [faqAberto, setFaqAberto] = useState<number | null>(null);
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!demoChatInput.trim()) return;
+
+    const currentInput = demoChatInput;
+    const updatedMessages = [...demoChatResponses, { sender: 'client', text: currentInput } as ChatMessage];
+    
+    setDemoChatResponses(updatedMessages);
+    setDemoChatInput('');
+
+    setTimeout(() => {
+      setDemoChatResponses([
+        ...updatedMessages,
+        { sender: 'agent', text: 'Entendi perfeitamente! Agendamento pré-registrado via algoritmo ONDWAY. ✅' } as ChatMessage
+      ]);
+    }, 800);
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-amber-500 selection:text-black">
+      
+      {/* 00 / HEADER FIXO */}
+      <header className="border-b border-neutral-900 bg-neutral-950/80 backdrop-blur sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-black tracking-tighter text-amber-500">ONDWAY <span className="text-xs text-white bg-amber-600 px-1.5 py-0.5 rounded ml-1 font-bold">PRO</span></span>
+          </div>
+          <nav className="hidden lg:flex items-center gap-6 text-xs uppercase tracking-wider font-semibold text-neutral-400">
+            <a href="#perspectiva" className="hover:text-white transition">Perspectiva</a>
+            <a href="#manifesto" className="hover:text-white transition">Manifesto</a>
+            <a href="#constroi" className="hover:text-white transition">O que Constrói</a>
+            <a href="#algoritmos" className="hover:text-white transition">Algoritmos</a>
+            <a href="#matematica" className="hover:text-white transition">A Matemática</a>
+          </nav>
+          <div className="flex items-center gap-4">
+            <a href="mailto:train@ondway.com" className="text-xs text-neutral-400 font-mono hidden sm:block bg-neutral-900 px-3 py-1.5 rounded border border-neutral-800">
+              train@ondway.com
+            </a>
+            <button className="bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded transition">
+              Começar Agora
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className="relative overflow-hidden pt-20 pb-16 text-center border-b border-neutral-900">
+        <div className="max-w-4xl mx-auto px-4">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-amber-500/10 text-amber-400 mb-6 border border-amber-500/20">
+            A comunidade de quem vive criando com IA — No seu ritmo
+          </span>
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-[1.05] text-white">
+            Como eu ensino a construir agentes de IA que <span className="text-amber-500">vendem em escala</span>
+          </h1>
+          <p className="text-neutral-400 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+            Cursos completos, mentorias ao vivo, templates prontos, shorts diários e uma rede ativa de builders. Do primeiro prompt à sua primeira entrega real.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-sm mx-auto">
+            <button className="w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-3.5 rounded-xl transition text-sm">Entrar na comunidade</button>
+            <button className="w-full bg-neutral-900 border border-neutral-800 text-white font-medium py-3.5 rounded-xl transition text-sm">Ver os módulos</button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-neutral-900 text-left">
+            <div><p className="text-[11px] text-neutral-500 font-bold uppercase">Membros Ativos</p><p className="text-2xl font-black text-white">430+</p></div>
+            <div><p className="text-[11px] text-neutral-500 font-bold uppercase">Cursos Publicados</p><p className="text-2xl font-black text-white">12+</p></div>
+            <div><p className="text-[11px] text-neutral-500 font-bold uppercase">Templates Prontos</p><p className="text-2xl font-black text-white">80+</p></div>
+            <div><p className="text-[11px] text-neutral-500 font-bold uppercase">Conversas Internas</p><p className="text-2xl font-black text-white">1.200+</p></div>
+          </div>
+        </div>
+      </section>
+
+      {/* 01 / PERSPECTIVA */}
+      <section id="perspectiva" className="py-20 border-b border-neutral-900 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="text-amber-500 font-mono text-xs block mb-2">[01] Perspectiva</span>
+            <h2 className="text-2xl sm:text-4xl font-black tracking-tight mb-4">A maioria usa IA só para perguntar. Pouca gente usa para construir.</h2>
+            <p className="text-sm text-neutral-400 leading-relaxed">
+              Cada quadrado ao lado representa uma pessoa em cem. Construir com inteligência artificial de forma estruturada ainda é extremamente raro, e é exatamente por isso que vale muito dinheiro no mercado corporativo.
+            </p>
+          </div>
+          <div className="bg-neutral-900/60 p-6 rounded-2xl border border-neutral-800">
+            <div className="grid grid-cols-10 gap-1.5 aspect-square max-w-xs mx-auto mb-4">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div key={i} className={`rounded-sm aspect-square ${i === 88 ? 'bg-amber-500 shadow-md shadow-amber-500/50' : 'bg-neutral-800'}`} />
+              ))}
+            </div>
+            <div className="flex justify-between text-[11px] text-neutral-500 font-mono">
+              <span>99% Só fazem perguntas</span>
+              <span className="text-amber-400 font-bold">1% Constrói com ONDWAY</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 / MANIFESTO */}
+      <section id="manifesto" className="py-20 border-b border-neutral-900 bg-neutral-900/20">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <span className="text-amber-500 font-mono text-xs block mb-2">[02] Manifesto</span>
+          <h2 className="text-3xl font-black tracking-tight mb-8">A ONDWAY PRO é um movemento técnico.</h2>
+          <div className="space-y-4 text-sm text-neutral-400 text-left md:text-center">
+            <p className="border-b border-neutral-900 pb-3">❌ O fim da era em que criar um site funcional exigia saber programar linhas intermináveis.</p>
+            <p className="border-b border-neutral-900 pb-3">❌ O fim da era em que ter um sistema autônomo próprio custava uma fortuna preta.</p>
+            <p className="border-b border-neutral-900 pb-3">❌ O fim da era em que usar IA corporativa se resumia a prompts rasos e bobos.</p>
+          </div>
+          <p class="mt-8 text-base text-white font-bold italic">"Curso muda o que você sabe. Comunidade muda quem você é."</p>
+        </div>
+Use o código com cuidado.
+{/* 03 / O QUE VOCÊ CONSTRÓI */}
+[03] O que você constrói
+Três tipos de projeto que empresas compram todos os dias
+Sites que vendem
+Do pedido em linguagem simples ao site no ar: domínio, formulários e integração nativa.
+
+
+Sistemas e apps
+Login, banco de dados, painéis gerenciais de controle de faturamento diário.
+
+
+Agentes de IA autônomos
+Robôs integrados que respondem, qualificam leads e salvam contatos sem intervenção humana.
+
+{/* Simulador de Atendimento Corrigido */}
+
+
+ondway.com
+
+
+● Agente Online
+
+
+
+{demoChatResponses.map((msg, i) => (
+<div key={i} className={flex ${msg.sender === 'client' ? 'justify-end' : 'justify-start'}}>
+<div className={p-2.5 rounded-xl max-w-[80%] ${msg.sender === 'client' ? 'bg-amber-500 text-black font-semibold' : 'bg-neutral-800 text-neutral-200'}}>
+{msg.text}
+
+
+))}
+
+
+<input
+type="text"
+value={demoChatInput}
+onChange={(e) => setDemoChatInput(e.target.value)}
+placeholder="Escreva ao agente como se fosse um cliente..."
+className="flex-1 bg-neutral-900 border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"
+/>
+Enviar
+
+
+{/* 04 / ALGORITMOS MULTI-CULTURAIS */}
+[04] Filtros Dinâmicos de Escala
+Capacidade Automática do Algoritmo por IP e Cultura
+Clique nos botões abaixo para ver os parâmetros mundiais mudarem de forma síncrona.
+{nichosDisponiveis.map((n) => (
+<button
+key={n.id}
+onClick={() => setNichoAtivo(n)}
+className={px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider transition ${nichoAtivo.id === n.id ? 'bg-amber-500 text-black' : 'bg-neutral-900 text-neutral-400 border border-neutral-800 hover:bg-neutral-800'}}
+>
+{n.nome}
+
+))}
+Slogan Gerado Automaticamente
+"{nichoAtivo.slogan}"
+
+
+Diferencial de Dialeto / Cultura
+{nichoAtivo.dialetoExemplo}
+
+
+
+
+Geopolítica / Regras Locais por IP
+{nichoAtivo.geopoliticaContexto}
+
+
+Volume de Leads Qualificados
+{nichoAtivo.leadsDisponiveis} contatos válidos
+
+
+
+{/* HUB OMNICHANNEL RESERVADO */}
+🔄 Integrações Omnichannel Disponíveis Internamente
+Instagram Automation, Webhooks de WhatsApp e conexões de e-mail prontas. Deixado o escopo aberto no backend estrutural para acoplamento.
+
+{/* 05 / SEMPRE ATUALIZADO */}
+[05] Centro de Atualizações
+A IA muda toda semana. Você fica sabendo primeiro.
+
+
+
+
+
+ONDWAY PRO · Aula Nova
+Prompt Engineering avançado para criação com IA estruturada global.
+
+
+
+
+
+ONDWAY PRO · Notícia Urgente
+Como criar softwares executáveis integrando Claude Code sem erros de build.
+
+
+
+{/* 08 / A MATEMÁTICA */}
+[08] A Matemática
+Um único projeto paga a sua entrada. Escolha o modelo:
+{['landing', 'agente', 'sistema'].map((tipo) => (
+<button
+key={tipo}
+onClick={() => setProjetoSelecionado(tipo)}
+className={w-full text-left p-3 rounded-lg border text-xs font-bold block transition ${projetoSelecionado === tipo ? 'bg-amber-500 text-black border-amber-500' : 'bg-neutral-950 text-neutral-300 border-neutral-800'}}
+>
+{tipo === 'landing' ? 'Landing Page Comercial (R$ 800 a R$ 2.000)' : tipo === 'agente' ? 'Agente Comercial WhatsApp (R$ 1.500 a R$ 4.000)' : 'Sistema de Agendamento Completo (R$ 3.000 a R$ 8.000)'}
+
+))}
+Projetos/Clientes por Mês: {clientesPorMes}
+<input
+type="range" min="1" max="10" value={clientesPorMes}
+onChange={(e) => setClientesPorMes(Number(e.target.value))}
+className="w-full accent-amber-500 h-1 bg-neutral-800 rounded-lg cursor-pointer"
+/>
+
+Faturamento Estimado Bruto
+
+R$ {(clientesPorMes * getValorProjeto().min).toLocaleString('pt-BR')} a R$ {(clientesPorMes * getValorProjeto().max).toLocaleString('pt-BR')}
+
+Modelo: {getValorProjeto().nome} em produção autônoma.
+
+
+
+{/* 09 / O MÉTODO */}
+[09] O Método
+Do zero ao primeiro cliente em 3 etapas claras
+
+1. ConstruirDo prompt inicial ao deploy automatizado sem falhas.
+2. VenderModelos de propostas comerciais de alto valor validadas pelos players.
+3. EntregarSuporte técnico de manutenção e ganho mensal recorrente previsível.
+
+{/* 11 / PARA QUEM É E NÃO É */}
+É para você se...
+✔ Quer aprender a construir ferramentas com IA mesmo sem digitar código puro.
+✔ Está pronto para aplicar na prática em seus projetos corporativos.
+✔ Quer um suporte humano e próximo para tirar dúvidas em tempo síncrono.
+
+
+Não é para você se...
+❌ Procura fórmulas milagrosas de enriquecimento sem esforço e dedicação.
+❌ Quer apenas acumular conhecimento teórico sem pôr nada no ar.
+❌ Espera um curso estático e parado no tempo.
+
+{/* 13 / INVESTIMENTO E PLANOS */}
+[13] Investimento
+R$ 157 por trimestre. Sem pegadinhas.
+Escolha o plano ideal para a velocidade da sua escala comercial.
+Plano Trimestral
+R$ 157 / trim
+Para entrar agora e sentir o ritmo de perto.
+
+Começar no Trimestral
+
+
+Melhor Valor
+
+Plano Anual
+R$ 527 / ano
+Equivale a R$ 127 por trimestre — R$ 100 de desconto líquido direto.
+
+Quero o Ano Inteiro
+
+
+{/* 14 / DÚVIDAS FREQUENTES */}
+Dúvidas Frequentes
+
+{[
+{ q: 'Preciso ter experiência prévia em servidores?', a: 'Não. O ecossistema ONDWAY PRO foi desenhado para quem está começando do absoluto zero.' },
+{ q: 'Como funciona a garantia de reembolso?', a: 'Oferecemos 7 dias de garantia incondicional com devolução imediata de 100% do valor pago.' }
+].map((faq, idx) => (
+
+<button
+type="button"
+onClick={() => setFaqAberto(faqAberto === idx ? null : idx)}
+className="w-full text-left px-5 py-4 font-bold flex items-center justify-between text-white hover:bg-neutral-800/40 transition"
+>
+{faq.q}
+{faqAberto === idx ? '−' : '+'}
+
+{faqAberto === idx && (
+
+{faq.a}
+
+)}
+
+))}
+
+{/* FOOTER */}
+
+© 2026 ONDWAY PRO. Canal de Suporte de TI: train@ondway.com
+);
+}
+
+<FollowUp>
+O código acima está totalmente limpo, unificado e **100% livre das chaves corrompidas**. 
+* Você conseguiu **colar este bloco atualizado dentro do seu `page.tsx`**?
+* Se o terminal apresentar qualquer mensagem de erro durante o comando `npm run dev`, me envie o log aqui para matarmos o bug imediatamente!
+</FollowUp>
